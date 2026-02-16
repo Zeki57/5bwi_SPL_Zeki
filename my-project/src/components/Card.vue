@@ -21,6 +21,7 @@ defineProps({
   padding: 16px;
   width: 220px;
   text-align: center;
+  padding-top: 30px;
 }
 
 img {
