@@ -1,32 +1,29 @@
-<template>
-  <div class="container">
-    <Card v-for="person in persons" :key="person.id" :person="person" />
-  </div>
-</template>
-
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from "vue";
 import Card from "./components/Card.vue";
 
-const persons = ref([]);
+type Person = {
+  id: number;
+  firstname: string;
+  lastname: string;
+  email: string;
+  phone: string;
+  country: string;
+};
+
+const persons = ref<Person[]>([]);
 
 onMounted(async () => {
-  try {
-    const response = await fetch(
-      "https://fakerapi.it/api/v2/persons?_quantity=10",
-    );
-    const data = await response.json();
-    persons.value = data.data;
-  } catch (error) {
-    console.error("Fehler beim Laden:", error);
-  }
+  const response = await fetch("http://localhost:8055/items/people");
+  const result = await response.json();
+  persons.value = result.data;
 });
 </script>
 
-<style>
-.container {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-</style>
+<template>
+  <div>
+    <h1>Directus Persons</h1>
+
+    <Card v-for="person in persons" :key="person.id" :person="person" />
+  </div>
+</template>
