@@ -1,0 +1,83 @@
+.teachers-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  color: #333;
+  margin: 0;
+}
+
+.btn-refresh,
+.btn-add-teachers {
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-refresh:hover,
+.btn-add-teachers:hover {
+  background-color: #1565c0;
+}
+
+.btn-refresh:disabled,
+.btn-add-teachers:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.teachers-container.error {
+  color: #d32f2f;
+  font-weight: 500;
+  padding: 20px;
+  text-align: center;
+}
+
+.teachers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.teacher-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.teacher-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.teacher-card h2 {
+  margin: 0 0 15px 0;
+  color: #1976d2;
+  font-size: 1.5rem;
+}
+
+.teacher-card p {
+  margin: 8px 0;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.teacher-card strong {
+  color: #333;
+}
