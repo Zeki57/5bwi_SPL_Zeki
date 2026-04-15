@@ -8,22 +8,61 @@ type Person = {
   lastname: string;
   email: string;
   phone: string;
-  country: string;
+  image: string;
+  birthday: string;
+  gender: string;
+  address: {
+    country: string;
+  };
 };
 
 const persons = ref<Person[]>([]);
+const loading = ref(true);
+const error = ref("");
 
 onMounted(async () => {
-  const response = await fetch("http://localhost:8055/items/people");
-  const result = await response.json();
-  persons.value = result.data;
+  try {
+    const response = await fetch(
+      "https://fakerapi.it/api/v2/persons?_quantity=10",
+    );
+    const result = await response.json();
+    persons.value = result.data ?? [];
+  } catch (err) {
+    console.error(err);
+    error.value = "Daten konnten nicht geladen werden.";
+  } finally {
+    loading.value = false;
+  }
 });
 </script>
 
 <template>
-  <div>
-    <h1>Directus Persons</h1>
+  <div class="wrapper">
+    <h1>Persons</h1>
 
-    <Card v-for="person in persons" :key="person.id" :person="person" />
+    <p v-if="loading">Lade Daten...</p>
+    <p v-else-if="error">{{ error }}</p>
+    <p v-else-if="persons.length === 0">Keine Personen gefunden.</p>
+
+    <div v-else class="grid">
+      <Card v-for="person in persons" :key="person.id" :person="person" />
+    </div>
   </div>
 </template>
+
+<style scoped>
+.wrapper {
+  padding: 30px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+</style>
