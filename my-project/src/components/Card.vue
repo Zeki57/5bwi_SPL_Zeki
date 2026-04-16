@@ -6,7 +6,12 @@ defineProps<{
     lastname: string;
     email: string;
     phone: string;
-    country: string;
+    image: string;
+    birthday: string;
+    gender: string;
+    address: {
+      country: string;
+    };
   };
 }>();
 </script>
@@ -16,7 +21,7 @@ defineProps<{
     <h2>{{ person.firstname }} {{ person.lastname }}</h2>
     <p><strong>Email:</strong> {{ person.email }}</p>
     <p><strong>Telefon:</strong> {{ person.phone }}</p>
-    <p><strong>Land:</strong> {{ person.country }}</p>
+    <p><strong>Land:</strong> {{ person.address.country }}</p>
   </div>
 </template>
 

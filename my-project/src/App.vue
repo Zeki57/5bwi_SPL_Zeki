@@ -30,7 +30,6 @@ onMounted(async () => {
 <template>
   <div>
     <h1>Persons</h1>
-
     <Card v-for="person in persons" :key="person.id" :person="person" />
   </div>
 </template>
