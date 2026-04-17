@@ -1,0 +1,14 @@
+{
+  "name": "my-project2",
+  "private": true,
+  "version": "0.0.0",
+  "workspaces": [
+    "teachers"
+  ],
+  "scripts": {
+    "dev": "npm --prefix teachers run dev",
+    "build": "npm --prefix teachers run build",
+    "lint": "npm --prefix teachers run lint",
+    "preview": "npm --prefix teachers run preview"
+  }
+}
