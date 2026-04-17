@@ -8,7 +8,7 @@ type Person = {
   lastname: string;
   email: string;
   phone: string;
-  image?: string | null;
+  image: string;
   birthday: string;
   gender: string;
   address: {
@@ -28,43 +28,8 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="page">
-    <header class="page-header">
-      <h1>Persons</h1>
-      <p>Automatisch geladene Bilder mit Picsum-Fallback.</p>
-    </header>
-
-    <div class="card-list">
-      <Card
-        v-for="(person, index) in persons"
-        :key="person.id"
-        :person="person"
-        :fallbackImage="`https://picsum.photos/200/300?random=${index + 1}`"
-      />
-    </div>
+  <div>
+    <h1>Persons</h1>
+    <Card v-for="person in persons" :key="person.id" :person="person" />
   </div>
 </template>
-
-<style scoped>
-.page {
-  padding: 32px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-.page-header {
-  margin-bottom: 24px;
-}
-.page-header h1 {
-  margin: 0 0 8px;
-  font-size: 2rem;
-}
-.page-header p {
-  margin: 0;
-  color: #555;
-}
-.card-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-}
-</style>
